@@ -51,12 +51,17 @@ bot.on("message", function(msg) {
         } else {
           console.log("command not defined" + command)
         }
-
         if(cmd === "help") {
-          //todo: make real help command
-          bot.sendMessage(msg.channel, "I can not help you")
+          lmsg = []
+          lmsg.push("```")
+          for(var command in commands) {
+            lmsg.push("::" + command)
+            lmsg.push(commands[command]["args"])
+            lmsg.push(commands[command]["about"])
+          }
+          lmsg.push("```")
+          bot.sendMessage(msg.channel, lmsg)
         }
-
       }
     } else { //log PMs
       console.log("PM: " + msg.author.id + "|" + msg.author.username + " said: " + msg)
@@ -99,7 +104,7 @@ var commands = {
   },
   "pong": {
     args: "<No arguments>",
-    about: "",
+    about: "Test response",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "no")
     }
