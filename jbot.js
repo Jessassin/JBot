@@ -145,16 +145,14 @@ var commands = {
     about: "Replies with info about the bot",
     action: function(bot, msg, about) {
       var lmsg = []
-      lmsg.push("```")
-      lmsg.push("Logged into " + bot.channels.length + " channels")
-      lmsg.push("Tracking " + bot.users.length + " users")
-      lmsg.push("Using " + memuse() + "MB of RAM")
-      lmsg.push("Status changes logged: " + statuschangecount)
-      lmsg.push("Messages logged: " + msgcount)
-      lmsg.push("Uptime: " + (Math.round(bot.uptime / (1000 * 60 * 60))) + " hours, " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minutes, and " + (Math.round(bot.uptime / 1000) % 60) + " seconds.")
-      lmsg.push("Github: " + "https://github.com/Jessassin/JBot")
-      lmsg.push("Made with love, by " + "@jessassin. ID: 108697134169067520")
-      lmsg.push("```")
+      lmsg.push("Logged into `" + bot.channels.length + "` channels")
+      lmsg.push("Tracking `" + bot.users.length + "` users")
+      lmsg.push("Using `" + memuse() + "mb` of RAM")
+      lmsg.push("Status changes logged: `" + statuschangecount + "`")
+      lmsg.push("Messages logged: `" + msgcount + "`")
+      lmsg.push("Uptime: `" + (Math.round(bot.uptime / (1000 * 60 * 60))) + "h` `" + (Math.round(bot.uptime / (1000 * 60)) % 60) + "m` `" + (Math.round(bot.uptime / 1000) % 60) + "s`")
+      lmsg.push("Github: `" + "https://github.com/Jessassin/JBot `")
+      lmsg.push("Made with love, by `@jessassin` ID: 108697134169067520")
       bot.sendMessage(msg.channel, lmsg)
     }
   },
@@ -164,9 +162,9 @@ var commands = {
     action: function(bot, msg) {
       var serverlist = bot.servers.toString().split(",")
       var lmsg = []
-      lmsg.push("``JBot`` is connected to the following servers: ")
+      lmsg.push("`JBot` is connected to the following servers: ")
       for(var i in serverlist) {
-        lmsg.push("``" + serverlist[i] + "``")
+        lmsg.push("`" + serverlist[i] + "`")
       }
       bot.sendMessage(msg.channel, lmsg)
     }
