@@ -98,7 +98,7 @@ var commands = {
   "ping": {
     args: "<No arguments>",
     about: "Test response",
-    action: function(msg) {
+    action: function(bot, msg) {
       bot.sendMessage(msg.channel, "Pong!")
     }
   },
@@ -142,7 +142,7 @@ var commands = {
   },
   "about": {
     args: "<No arguments>",
-    about: "Replies with info about the server you are in",
+    about: "Replies with info about the bot",
     action: function(bot, msg, about) {
       var lmsg = []
       lmsg.push("```")
@@ -152,6 +152,7 @@ var commands = {
       lmsg.push("Status changes logged: " + statuschangecount)
       lmsg.push("Messages logged: " + msgcount)
       lmsg.push("Uptime: " + (Math.round(bot.uptime / (1000 * 60 * 60))) + " hours, " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minutes, and " + (Math.round(bot.uptime / 1000) % 60) + " seconds.")
+      lmsg.push("Github: " + "https://github.com/Jessassin/JBot")
       lmsg.push("Made with love, by " + "@jessassin. ID: 108697134169067520")
       lmsg.push("```")
       bot.sendMessage(msg.channel, lmsg)
