@@ -157,6 +157,19 @@ var commands = {
       lmsg.push("```")
       bot.sendMessage(msg.channel, lmsg)
     }
+  },
+  "servers": {
+    args: "<No arguments>",
+    about: "List of connected servers",
+    action: function(bot, msg) {
+      var serverlist = bot.servers.toString().split(",")
+      var lmsg = []
+      lmsg.push("``JBot`` is connected to the following servers: ")
+      for(var i in serverlist) {
+        lmsg.push("``" + serverlist[i] + "``")
+      }
+      bot.sendMessage(msg.channel, lmsg)
+    }
   }
   //new commands here
 }
