@@ -1,0 +1,10 @@
+var authconfig = {};
+
+authconfig.email = 'some-email@provider.net';
+authconfig.password = 'SuperSecurePassword123';
+authconfig.redishost = '127.0.0.1';
+authconfig.redisport = '6379';
+authconfig.redisuser = 'redis_user';
+authconfig.redispass = 'SuperSecurePassword123';
+
+module.exports = authconfig;

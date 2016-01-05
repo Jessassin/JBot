@@ -1,0 +1,20 @@
+{
+  "name": "JBot",
+  "version": "0.0.1",
+  "description": "Discord bot written by Jessassin",
+  "main": "jbot.js",
+  "dependencies": {
+    "console-stamp": "*",
+    "discord.js": "*",
+    "nodemon": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon jbot.js",
+    "start": "node jbot.js"
+  },
+  "author": "Jessassin",
+  "repository": "https://www.github.com/Jessassin/JBot",
+  "readme": "readme.md",
+  "license": "NA"
+}
