@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "nodemon jbot.js",
+    "test": "nodemon jbot.js",
     "start": "node jbot.js"
   },
   "author": "Jessassin",

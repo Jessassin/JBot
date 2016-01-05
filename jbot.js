@@ -42,48 +42,19 @@ bot.on("message", function(msg) {
         console.log("Command issued!");
         console.log(cmdtext);
         console.log(cmd);
+
+        //borrowed this via: https://github.com/stuff-from-ster/DiscordBot/commit/5d2d162434f49f12098878c5bf14753dc527baf8
+        command = commands[cmd]
+        if(command) {
+          console.log("running command: " + command)
+          command.action(bot, msg)
+        } else {
+          console.log("command not defined" + command)
+        }
+
         if(cmd === "help") {
           //todo: make real help command
           bot.sendMessage(msg.channel, "I can not help you")
-        }
-        if(cmd === "about") {
-          var lmsg = []
-          lmsg.push("```")
-          lmsg.push("Logged into " + bot.channels.length + " channels")
-          lmsg.push("Tracking " + bot.users.length + " users")
-          lmsg.push("Using " + memuse() + "MB of RAM")
-          lmsg.push("Status changes logged: " + statuschangecount)
-          lmsg.push("Messages logged: " + msgcount)
-          lmsg.push("Uptime: " + (Math.round(bot.uptime / (1000 * 60 * 60))) + " hours, " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minutes, and " + (Math.round(bot.uptime / 1000) % 60) + " seconds.")
-          lmsg.push("Made with love, by " + "@jessassin. ID: 108697134169067520")
-          lmsg.push("```")
-          bot.sendMessage(msg.channel, lmsg)
-        }
-        if(cmd === "ping") {
-          bot.sendMessage(msg.channel, "Pong!")
-        }
-        if(cmd === "pong") {
-          bot.sendMessage(msg.channel, "no")
-        }
-        if(cmd === "flip") {
-          bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
-        }
-        if(cmd === "unflip") {
-          bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
-        }
-        if(cmd === "server") {
-          lmsg = []
-          lmsg.push("")
-          lmsg.push("Server name: " + msg.channel.server +  " (ID: " + msg.channel.server.id + ")")
-          lmsg.push("Server owner: " + msg.channel.server.owner.name +  " (ID: " + msg.channel.server.owner.id + ")")
-          lmsg.push("Channel name: " + msg.channel + " (ID: " + msg.channel.id + ")")
-          if(msg.channel.topic) {
-            lmsg.push("Channel topic: ")
-            lmsg.push(msg.channel.topic)
-          } else {
-            lmsg.push("Channel has no topic")
-          }
-          bot.sendMessage(msg.channel, lmsg)
         }
 
       }
@@ -117,3 +88,69 @@ bot.on("presence", function(data) {
 });
 
 bot.login(authconfig.email, authconfig.password);
+
+var commands = {
+  "ping": {
+    args: "<No arguments>",
+    about: "Test response",
+    action: function(msg) {
+      bot.sendMessage(msg.channel, "Pong!")
+    }
+  },
+  "pong": {
+    args: "<No arguments>",
+    about: "",
+    action: function(bot, msg) {
+      bot.sendMessage(msg.channel, "no")
+    }
+  },
+  "flip": {
+    args: "<No arguments>",
+    about: "FFFFFFFlip table!",
+    action: function(bot, msg) {
+      bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
+    }
+  },
+  "unflip": {
+    args: "<No arguments>",
+    about: "Clean up the mess",
+    action: function(bot, msg) {
+      bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
+    }
+  },
+  "server": {
+    args: "<No arguments>",
+    about: "Replies with info about the server you are in",
+    action: function(bot, msg) {
+      bot.sendMessage(msg)
+      lmsg = []
+      lmsg.push("")
+      lmsg.push("Server name: " + msg.channel.server +  " (ID: " + msg.channel.server.id + ")")
+      lmsg.push("Server owner: " + msg.channel.server.owner.name +  " (ID: " + msg.channel.server.owner.id + ")")
+      lmsg.push("Channel name: " + msg.channel + " (ID: " + msg.channel.id + ")")
+      if(msg.channel.topic) {
+        lmsg.push("Channel topic: ")
+        lmsg.push(msg.channel.topic)
+      } else { lmsg.push("Channel has no topic") }
+      bot.sendMessage(msg.channel, lmsg)
+    }
+  },
+  "about": {
+    args: "<No arguments>",
+    about: "Replies with info about the server you are in",
+    action: function(bot, msg, about) {
+      var lmsg = []
+      lmsg.push("```")
+      lmsg.push("Logged into " + bot.channels.length + " channels")
+      lmsg.push("Tracking " + bot.users.length + " users")
+      lmsg.push("Using " + memuse() + "MB of RAM")
+      lmsg.push("Status changes logged: " + statuschangecount)
+      lmsg.push("Messages logged: " + msgcount)
+      lmsg.push("Uptime: " + (Math.round(bot.uptime / (1000 * 60 * 60))) + " hours, " + (Math.round(bot.uptime / (1000 * 60)) % 60) + " minutes, and " + (Math.round(bot.uptime / 1000) % 60) + " seconds.")
+      lmsg.push("Made with love, by " + "@jessassin. ID: 108697134169067520")
+      lmsg.push("```")
+      bot.sendMessage(msg.channel, lmsg)
+    }
+  }
+  //new commands here
+}
