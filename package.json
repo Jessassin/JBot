@@ -14,7 +14,7 @@
     "start": "node jbot.js"
   },
   "author": "Jessassin",
-  "repository": "https://www.github.com/Jessassin/JBot",
+  "repository": "https://github.com/Jessassin/JBot",
   "readme": "readme.md",
   "license": "NA"
 }
