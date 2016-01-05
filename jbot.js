@@ -28,14 +28,14 @@ bot.on("message", function(msg) {
     msgcount++
     if(msg.channel.server) { //log server messages
       console.log("MSG: " + msg.channel.server.name + "|" + msg.channel.name + "|" + msg.author.username + " said: " + msg)
-      if(msg.content === "(╯°□°）╯︵ ┻━┻" && msg.author != bot.user) {
-        console.log("tableflip detected, fixing")
-        bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
-      }
-      if(msg.content === "┬──┬ ノ( ゜-゜ノ)" && msg.author != bot.user) {
-        console.log("tableflip detected, fixing")
-        bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
-      }
+      //if(msg.content === "(╯°□°）╯︵ ┻━┻" && msg.author != bot.user) {
+      //  console.log("tableflip detected, fixing")
+      //  bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
+      //}
+      //if(msg.content === "┬──┬ ノ( ゜-゜ノ)" && msg.author != bot.user) {
+      //  console.log("tableflip detected, fixing")
+      //  bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
+      //}
       if(msg.content[0] === ":" && msg.content[1] === ":") {
         var cmdtext = msg.content.split(":",3)[2]
         var cmd = cmdtext.split(" ",1)[0]
