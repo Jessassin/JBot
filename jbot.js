@@ -53,13 +53,17 @@ bot.on("message", function(msg) {
         }
         if(cmd === "help") {
           lmsg = []
-          lmsg.push("```")
           for(var command in commands) {
-            lmsg.push("::" + command)
-            lmsg.push(commands[command]["args"])
+            lmsg.push("```")
+            var tcmd = "::" + command
+            if(commands[command]["args"]) {
+              var tcmd = tcmd + " " + commands[command]["args"]
+            }
+            lmsg.push(tcmd)
             lmsg.push(commands[command]["about"])
+            lmsg.push("```")
+            //lmsg.push("")
           }
-          lmsg.push("```")
           bot.sendMessage(msg.channel, lmsg)
         }
       }
@@ -103,28 +107,28 @@ var commands = {
     }
   },
   "pong": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "Test response",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "no")
     }
   },
   "flip": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "FFFFFFFlip table!",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
     }
   },
   "unflip": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "Clean up the mess",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
     }
   },
   "server": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "Replies with info about the server you are in",
     action: function(bot, msg) {
       bot.sendMessage(msg)
@@ -141,7 +145,7 @@ var commands = {
     }
   },
   "about": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "Replies with info about the bot",
     action: function(bot, msg, about) {
       var lmsg = []
@@ -157,7 +161,7 @@ var commands = {
     }
   },
   "servers": {
-    args: "<No arguments>",
+    //args: "<No arguments>",
     about: "List of connected servers",
     action: function(bot, msg) {
       var serverlist = bot.servers.toString().split(",")
