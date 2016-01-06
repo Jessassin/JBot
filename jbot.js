@@ -42,7 +42,6 @@ bot.on("message", function(msg) {
         console.log("Command issued!");
         console.log(cmdtext);
         console.log(cmd);
-
         //borrowed this via: https://github.com/stuff-from-ster/DiscordBot/commit/5d2d162434f49f12098878c5bf14753dc527baf8
         command = commands[cmd]
         if(command) {
@@ -62,7 +61,6 @@ bot.on("message", function(msg) {
             lmsg.push(tcmd)
             lmsg.push(commands[command]["about"])
             lmsg.push("```")
-            //lmsg.push("")
           }
           bot.sendMessage(msg.channel, lmsg)
         }
@@ -73,9 +71,7 @@ bot.on("message", function(msg) {
     if(msg.author == bot.user) {
       return
     }
-    if(msg.channel.server) {//server actions
-      //may not use this - should probably change to if(!msg.channel.server)
-    } else {//PM actions
+    if(!msg.channel.server) {//server actions
       if(msg.content.search("https://discord.gg/") === 0  || msg.content.search("https://discordapp.com/invite/") === 0) {
         console.info(msg.author.username + " sent Discord.gg invite link. Attempting join")
         bot.joinServer(msg.content, function(error, server) {
@@ -100,35 +96,30 @@ bot.login(authconfig.email, authconfig.password);
 
 var commands = {
   "ping": {
-    args: "<No arguments>",
     about: "Test response",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "Pong!")
     }
   },
   "pong": {
-    //args: "<No arguments>",
     about: "Test response",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "no")
     }
   },
   "flip": {
-    //args: "<No arguments>",
     about: "FFFFFFFlip table!",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "(╯°□°）╯︵ ┻━┻")
     }
   },
   "unflip": {
-    //args: "<No arguments>",
     about: "Clean up the mess",
     action: function(bot, msg) {
       bot.sendMessage(msg.channel, "┬──┬ ノ( ゜-゜ノ)")
     }
   },
   "server": {
-    //args: "<No arguments>",
     about: "Replies with info about the server you are in",
     action: function(bot, msg) {
       bot.sendMessage(msg)
@@ -145,7 +136,6 @@ var commands = {
     }
   },
   "about": {
-    //args: "<No arguments>",
     about: "Replies with info about the bot",
     action: function(bot, msg, about) {
       var lmsg = []
@@ -161,7 +151,6 @@ var commands = {
     }
   },
   "servers": {
-    //args: "<No arguments>",
     about: "List of connected servers",
     action: function(bot, msg) {
       var serverlist = bot.servers.toString().split(",")
