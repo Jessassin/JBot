@@ -185,6 +185,32 @@ var commands = {
         bot.sendMessage(msg.channel, lmsg)
       })
     }
+  },
+  "online": {
+    about: "Sets bot status to online",
+    restricted: true,
+    action: function(bot, msg) {
+      if(bot.user.status != "online") {
+        bot.sendMessage(msg.channel, "Setting bot status to online")
+        bot.setStatus("online")
+        console.log("Status set to online by: " + msg.sender.username)
+      } else {
+        bot.sendMessage(msg.channel, "Bot is already set to online")
+      }
+    }
+  },
+  "idle": {
+    about: "Sets bot status to away (Bugged, https://github.com/hydrabolt/discord.js/issues/134)",
+    restricted: true,
+    action: function(bot, msg) {
+      if(bot.user.status != "idle") {
+        bot.sendMessage(msg.channel, "Setting bot status to idle")
+        bot.setStatus("idle")
+        console.log("Status set to idle by: " + msg.sender.username)
+      } else {
+        bot.sendMessage(msg.channel, "Bot is already set to idle")
+      }
+    }
   }
   //new commands here
 }
