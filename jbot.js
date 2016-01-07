@@ -46,7 +46,11 @@ bot.on("message", function(msg) {
         command = commands[cmd]
         if(command) {
           console.log("running command: " + command)
-          command.action(bot, msg)
+          if(!command.restricted || msg.sender.id == 108697134169067520) {
+            command.action(bot, msg)
+          } else {
+            bot.sendMessage(msg.channel, "You do not have permission to run this command!")
+          }
         } else {
           console.log("command not defined" + command)
         }
