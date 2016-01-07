@@ -161,6 +161,26 @@ var commands = {
       }
       bot.sendMessage(msg.channel, lmsg)
     }
+  },
+  "whois": {
+    args: "<username or user ID>",
+    about: "Provides information about specified user (WIP)",
+    action: function(bot, msg) {
+      var lmsg = []
+      msg.mentions.map(function(user) {
+        lmsg.push("\n**Username:** " + user.username)
+        lmsg.push("**ID:** " + user.id)
+        lmsg.push("**Status:** " + user.status)
+        //lmsg.push("test")
+        if(user.avatarURL) {
+          lmsg.push("**Avatar:** " + user.avatarURL + "")
+        } else {
+          lmsg.push("**User has no avatar**")
+        }
+
+        bot.sendMessage(msg.channel, lmsg)
+      })
+    }
   }
   //new commands here
 }
