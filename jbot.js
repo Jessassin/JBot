@@ -57,6 +57,9 @@ bot.on("message", function(msg) {
         if(cmd === "help") {
           lmsg = []
           for(var command in commands) {
+            if(commands[command]["restricted"]) {
+              lmsg.push("**__:exclamation:Restricted:exclamation:__**")
+            }
             lmsg.push("```")
             var tcmd = "::" + command
             if(commands[command]["args"]) {
